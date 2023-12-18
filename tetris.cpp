@@ -374,6 +374,8 @@ void Tetris::game_over() {
     score = 0;
     broke_line = 0;
     if (game_mode == 1) level = 1;
+    goto_(broke_line_counter_posx, broke_line_counter_posy);
+    std::cout << std::string(13 + std::to_string(broke_line).length(), ' '); // 13 is the length of the "BROKEN LINE: " text
     display_broken_line_counter();
     display_counter(0, &score, score_text_posx + score_text_length, score_text_posy); // we write
     display_counter(0, &level, level_text_posx + level_text_length, level_text_posy);
