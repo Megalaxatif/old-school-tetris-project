@@ -8,7 +8,7 @@ This is a public project, you can participate and distribute it in compliance wi
 
 ## Presentation
 
-Waiting between 2 games of Fortnite, Minecraft... Or just want to play Tetris like a pro ? This old-school Tetris game may interest you. You can play it on the command prompt by tapping a command (tutorial below) or simply use the shortcut on your desktop.
+Waiting between 2 games of Fortnite, Minecraft... Or just want to play Tetris like a pro ? This old-school Tetris game may interest you. You can play it on the command prompt by tapping a command (tutorial below) or simply use the shortcut on your desktop. The ones in the game files are not valid, they are made for my computer not yours, so you have to make the shortcuts yourself or just edit the path on the shortcut properties.
 
 > type "tetris" to play the premium version
 
