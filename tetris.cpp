@@ -160,9 +160,9 @@ Tetris::Tetris() : board{ 0 }, current_tetramino{ 0 }, random_index_list{ 0 } {
     numbers_length = 8;
     numbers_heigth = 5;
     score = 0;
-    broke_line = 0;
-    broke_line_counter_posx = board_posx;
-    broke_line_counter_posy = board_posy - 1;
+    broken_lines = 0;
+    broken_lines_counter_posx = board_posx;
+    broken_lines_counter_posy = board_posy - 1;
     timer = 0;
     r_index = 0;
     random_index_list[9] = rand() % 7; // we initialize the last value
@@ -372,10 +372,10 @@ void Tetris::game_over() {
     display_counter(1, &score, score_text_posx + score_text_length, score_text_posy); // we delete
     display_counter(1, &level, level_text_posx + level_text_length, level_text_posy);
     score = 0;
-    broke_line = 0;
+    broken_lines = 0;
     if (game_mode == 1) level = 1;
-    goto_(broke_line_counter_posx, broke_line_counter_posy);
-    std::cout << std::string(13 + std::to_string(broke_line).length(), ' '); // 13 is the length of the "BROKEN LINE: " text
+    goto_(broken_lines_counter_posx, broken_lines_counter_posy);
+    std::cout << std::string(20, ' ');
     display_broken_line_counter();
     display_counter(0, &score, score_text_posx + score_text_length, score_text_posy); // we write
     display_counter(0, &level, level_text_posx + level_text_length, level_text_posy);
@@ -468,9 +468,9 @@ void Tetris::try_break_line() {
                     at_least_one_line_broken = true;
                     line_to_broke_list[y] = posy + y;
                     broke_line_ ++;
-                    broke_line ++; // we increment the counter
+                    broken_lines ++; // we increment the counter
                     display_broken_line_counter();
-                    if (broke_line % 10 == 0 && level < 10 && game_mode == 1) {
+                    if (broken_lines % 10 == 0 && level < 10 && game_mode == 1) {
                         level ++;
                         display_counter(0, &level, level_text_posx + level_text_length, level_text_posy);
                     }
@@ -480,7 +480,7 @@ void Tetris::try_break_line() {
         else break;
     }
     if (at_least_one_line_broken) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));
         // we flash the line 3 times
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 4; j++) {
@@ -489,9 +489,9 @@ void Tetris::try_break_line() {
                     std::cout << std::string(board_length * 2 - 4, ' ');
                 }
             }
-            std::this_thread::sleep_for(std::chrono::milliseconds(12));
+            std::this_thread::sleep_for(std::chrono::milliseconds(6));
             display_board();
-            std::this_thread::sleep_for(std::chrono::milliseconds(25));
+            std::this_thread::sleep_for(std::chrono::milliseconds(12));
         }
         // we reset the line
         for (int i = 0; i < 4; i++) {
@@ -579,8 +579,8 @@ void Tetris::display_counter(int n, int *var, int counter_posx, int counter_posy
     }
 }
 void Tetris::display_broken_line_counter() {
-    goto_(broke_line_counter_posx, broke_line_counter_posy);
-    std::cout << "\033[31mBROKEN LINE: \033[0m" << broke_line;
+    goto_(broken_lines_counter_posx, broken_lines_counter_posy);
+    std::cout << "\033[31mBROKEN LINES: \033[0m" << broken_lines;
 }
 void Tetris::draw_tetris_logo() {
     for (int i = 0; i < tetris_logo_heigth; i++) {

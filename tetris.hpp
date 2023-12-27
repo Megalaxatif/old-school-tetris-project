@@ -49,7 +49,7 @@ private:
 	int highest_posy;
 	int board_posx, board_posy, board_length, board_heigth;
 	int next_tetra_posx, next_tetra_posy;
-	int broke_line_counter_posx, broke_line_counter_posy;
+	int broken_lines_counter_posx, broken_lines_counter_posy;
 	int score_text_length, score_text_posx, score_text_posy;
 	int game_state_text_length, game_state_text_posx, game_state_text_posy;
 	int level_text_length, level_text_posx, level_text_posy;
@@ -62,7 +62,7 @@ private:
 	int game_mode;
 	int score;
 	int level;
-	int broke_line;
+	int broken_lines;
 	int timer;
 	int r_index;
 	bool is_key_up_pressed;
